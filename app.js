@@ -1,16 +1,9 @@
-// Globals - no window!!!!
+// CommonJS, every file is module (by default)
+// Modules - Encapsulated Code (only share minimum)
 
-// __dirname - path to current directory
-// __filename - file name
-// require - function to use modules (CommonJS)
-// module - info about current module (file)
-// process - info about env where the program is being executed
+const { john, peter } = require("./names");
+const sayHi = require("./utl");
 
-console.log("__dirname: ", __dirname);
-console.log("__filename: ", __filename);
-console.log("require: ", require);
-console.log("\n########################## \n");
-console.log("module: ", module);
-console.log("\n########################## \n");
-// node, v8 version, system info
-// console.log("process: ", process);
+sayHi("susan");
+sayHi(john);
+sayHi(peter);
