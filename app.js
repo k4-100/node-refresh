@@ -1,9 +1,22 @@
-// CommonJS, every file is module (by default)
-// Modules - Encapsulated Code (only share minimum)
+const os = require("os");
 
-const { john, peter } = require("./names");
-const sayHi = require("./utl");
+// info about current user
+console.log(os.userInfo(), "\n");
 
-sayHi("susan");
-sayHi(john);
-sayHi(peter);
+// system uptime in seconds
+console.log("\n", os.uptime(), "\n");
+
+// info about cpu cores
+console.log("\n", os.cpus(), "\n");
+
+console.log("\n", os.endianness(), "\n");
+
+console.log("\n", os.homedir(), "\n");
+
+console.log("\n", os.networkInterfaces(), "\n");
+
+console.log("\n", os.freemem() / (1000 * 1000 * 1000), "\n");
+
+console.log("\n", os.totalmem() / (1000 * 1000 * 1000), "\n");
+
+console.log("\n", os.tmpdir(), "\n");
