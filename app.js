@@ -1,20 +1,19 @@
 const path = require("path");
+const fs = require("fs");
 
-// system path separator
-console.log("\n", path.sep, "\n");
+const testPath = path.join("content", "subfolder", "test.txt");
+let file = fs
+  .readFileSync(testPath, {
+    encoding: "utf8",
+  })
+  .trim();
 
-const filePath = path.join("/content//////", "////subfolder", "test.txt");
-console.log("\n", filePath, "\n");
+console.log("\n", file, "\n");
 
-const base = path.basename(filePath);
+fs.writeFileSync(testPath, file + "\n" + file);
 
-console.log("\n", base, "\n");
+file = fs.readFileSync(testPath, {
+  encoding: "utf8",
+});
 
-const absoluteFilePath = path.resolve(
-  __dirname,
-  "content",
-  "subfolder",
-  "test.txt"
-);
-
-console.log("\n", absoluteFilePath, "\n");
+console.log("\n", file, "\n");
