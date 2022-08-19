@@ -1,22 +1,20 @@
-const os = require("os");
+const path = require("path");
 
-// info about current user
-console.log(os.userInfo(), "\n");
+// system path separator
+console.log("\n", path.sep, "\n");
 
-// system uptime in seconds
-console.log("\n", os.uptime(), "\n");
+const filePath = path.join("/content//////", "////subfolder", "test.txt");
+console.log("\n", filePath, "\n");
 
-// info about cpu cores
-console.log("\n", os.cpus(), "\n");
+const base = path.basename(filePath);
 
-console.log("\n", os.endianness(), "\n");
+console.log("\n", base, "\n");
 
-console.log("\n", os.homedir(), "\n");
+const absoluteFilePath = path.resolve(
+  __dirname,
+  "content",
+  "subfolder",
+  "test.txt"
+);
 
-console.log("\n", os.networkInterfaces(), "\n");
-
-console.log("\n", os.freemem() / (1000 * 1000 * 1000), "\n");
-
-console.log("\n", os.totalmem() / (1000 * 1000 * 1000), "\n");
-
-console.log("\n", os.tmpdir(), "\n");
+console.log("\n", absoluteFilePath, "\n");
