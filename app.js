@@ -1,18 +1,28 @@
-const path = require("path");
-const fs = require("fs");
+const http = require("http");
 
-const filePath = "./content/subfolder/test.txt";
-let file = "";
-fs.readFile(filePath, "utf8", (err, res) => {
-  if (err) {
-    console.error(err);
-    return;
+const hostname = "127.0.0.1";
+const port = 3000;
+
+const app = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/html");
+  let message = "";
+
+  switch (req.url) {
+    case "/":
+      message = `Hello in '${req.url}' (HOME)`;
+      break;
+    case "/about":
+      message = `Hello in '${req.url}' (ABOUT)`;
+      break;
+    default:
+      message = `Hello in '${req.url}' (ERROR)`;
   }
-  file = res;
-  fs.writeFile(filePath, file + "\n" + file, (err, res) => {
-    if (err) {
-      console.log(err);
-    }
-  });
-  console.log(file);
+
+  res.write(message);
+  res.end();
+});
+
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}`);
 });
