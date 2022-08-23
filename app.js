@@ -1,28 +1,11 @@
-const http = require("http");
+const EventEmitter = require("events");
 
-const hostname = "127.0.0.1";
-const port = 3000;
+const customEmitter = new EventEmitter();
 
-const app = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/html");
-  let message = "";
-
-  switch (req.url) {
-    case "/":
-      message = `Hello in '${req.url}' (HOME)`;
-      break;
-    case "/about":
-      message = `Hello in '${req.url}' (ABOUT)`;
-      break;
-    default:
-      message = `Hello in '${req.url}' (ERROR)`;
-  }
-
-  res.write(message);
-  res.end();
+customEmitter.on("response", () => {
+  console.log("called response");
 });
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}`);
-});
+const flag = process.argv[2];
+
+if (flag === "hello") customEmitter.emit("response");
