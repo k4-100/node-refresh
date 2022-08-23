@@ -1,11 +1,3 @@
-const EventEmitter = require("events");
-
-const customEmitter = new EventEmitter();
-
-customEmitter.on("response", (message) => {
-  console.log(`called response, ${message}`);
-});
-
-const flag = process.argv[2];
-
-if (flag === "hello") customEmitter.emit("response", (message = "text"));
+const fs = require("fs");
+for (let i = 0; i < 10000; i++)
+  fs.writeFileSync("./content/big.txt", `Hello World ${i}\n`, { flag: "a" });
